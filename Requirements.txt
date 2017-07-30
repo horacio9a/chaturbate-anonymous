@@ -1,0 +1,7 @@
+urllib3==1.21.1
+DateTime==4.1.1
+requests==2.18.1
+Command==0.1.0
+colorama==0.3.7
+termcolor==1.1.0
+configparser==3.5.0
