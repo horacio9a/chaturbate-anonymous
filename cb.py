@@ -1,4 +1,4 @@
-# Chaturbate Anonymous Freechat RTMP Recorder v.1.0.1 by horacio9a for Python 2.7.13
+# Chaturbate Anonymous Freechat RTMP Recorder v.1.0.2 by horacio9a for Python 2.7.13
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
 urllib3.disable_warnings()
@@ -21,14 +21,17 @@ while True:
          for (num,value) in enumerate(modellist):
             print ' =>',(num+1),value[:-1]
          print
-         mn = int(raw_input(" => Select CB Model => "))
+         mn = int(raw_input(" => Select CB Model URL => "))
          print
          break
      except ValueError:
          print
          print(colored(" => Input must be a number <= ", 'yellow', 'on_red'))
          print
-model = open(config.get('files', 'model_list'), 'r').readlines()[mn-1][:-1]
+model_url = open(config.get('files', 'model_list'), 'r').readlines()[mn-1][:-1]
+model0 = model_url.split('://')[1]
+model1 = model0.split('/')[1]
+model = re.sub('/', '', model1)
 print (" => Selected CB Model => %s" %model)
 print
 
@@ -37,12 +40,10 @@ http_pool = urllib3.connection_from_url(url)
 r = http_pool.urlopen('GET',url)
 enc = (r.data)
 dec=urllib.unquote(enc).decode()
-pnf0 = dec.split('canc')[1]
-pnf = pnf0.split('d')[0]
-if len(pnf) > 5:
+if "HTTP 404" not in dec:
  pwd0 = dec.split('password: ')[1]
- pwd = pwd0.split(',')[0]
- if len(pwd) > 3:
+ pwd = pwd0.split("'")[0]
+ if len(pwd) < 3:
    hlsurl0 = dec.split("source src='")[1]
    hlsurl1 = hlsurl0.split("'")[0]
    if len(hlsurl1) > 1:
