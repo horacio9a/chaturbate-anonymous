@@ -10,12 +10,9 @@ IF "%MODE%"=="2" GOTO CBM
 IF "%MODE%"=="3" GOTO CBR
 IF "%MODE%"=="4" GOTO EXIT
 :CB
-SET MODELNAME=%MODEL% #####################################
-SET _MODEL_=%MODELNAME:~0,33%
 ECHO.
 CLS && ECHO #################################################
 ECHO ### CB ######## R E C O R D I N G ###############
-ECHO ############### %_MODEL_%
 ECHO #################################################
 cd C:/
 COLOR 0F
@@ -25,12 +22,9 @@ ECHO.
 PAUSE
 GOTO START
 :CBFF
-SET MODELNAME=%MODEL% #####################################
-SET _MODEL_=%MODELNAME:~0,33%
 ECHO.
 CLS && ECHO #################################################
 ECHO ### CBFF ###### R E C O R D I N G ###############
-ECHO ############### %_MODEL_%
 ECHO #################################################
 cd C:/
 COLOR 0F
@@ -40,12 +34,9 @@ ECHO.
 PAUSE
 GOTO START
 :CBM
-SET MODELNAME=%MODEL% #####################################
-SET _MODEL_=%MODELNAME:~0,33%
 ECHO.
 CLS && ECHO #################################################
 ECHO ### CBM ####### R E C O R D I N G ###############
-ECHO ############### %_MODEL_%
 ECHO #################################################
 cd C:/
 COLOR 0F
