@@ -1,4 +1,4 @@
-# Chaturbate Remote FFPLAY/FFMPEG/TS  Anonymous Freechat Recorder v.1.0.2 by horacio9a for Python 2.7.13
+# Chaturbate Remote FFPLAY/FFMPEG TS Anonymous Freechat Recorder v.1.0.2 by horacio9a for Python 2.7.13
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
 urllib3.disable_warnings()
