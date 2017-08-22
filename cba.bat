@@ -2,15 +2,14 @@
 SETLOCAL EnableDelayedExpansion
 :START
 ECHO.
-SET /P MODE=EXIT(6) CBFFRTS(5) CBFFR(4) CBR(3) CBM(2) CBFF(1) CB(0)(ENTER)(%MODE%): 
+SET /P MODE=EXIT(5) CBFFRTS(4) CBFFR(3) CBR(2) CBFF(1) CB(0)(ENTER)(%MODE%): 
 IF "%MODE%"=="" GOTO CB
 IF "%MODE%"=="0" GOTO CB
 IF "%MODE%"=="1" GOTO CBFF
-IF "%MODE%"=="2" GOTO CBM
-IF "%MODE%"=="3" GOTO CBR
-IF "%MODE%"=="4" GOTO CBFFR
-IF "%MODE%"=="5" GOTO CBFFRTS
-IF "%MODE%"=="6" GOTO EXIT
+IF "%MODE%"=="2" GOTO CBR
+IF "%MODE%"=="3" GOTO CBFFR
+IF "%MODE%"=="4" GOTO CBFFRTS
+IF "%MODE%"=="5" GOTO EXIT
 :CB
 ECHO.
 CLS && ECHO #################################################
@@ -32,18 +31,6 @@ cd C:/
 COLOR 0F
 cd -cba-py
 python cbff.py
-ECHO.
-PAUSE
-GOTO START
-:CBM
-ECHO.
-CLS && ECHO #################################################
-ECHO ### CBM ####### R E C O R D I N G ###############
-ECHO #################################################
-cd C:/
-COLOR 0F
-cd -cba-py
-python cbm.py
 ECHO.
 PAUSE
 GOTO START
