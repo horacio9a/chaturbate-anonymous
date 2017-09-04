@@ -64,7 +64,7 @@ cd C:/
 COLOR 0F
 cd -cba-py
 python cbr.py %MODEL%
-TIMEOUT 5
+TIMEOUT 30
 GOTO CBR_
 :CBFFR
 SET n=0
@@ -96,7 +96,7 @@ cd C:/
 COLOR 0F
 cd -cba-py
 python cbffr.py %MODEL%
-TIMEOUT 5
+TIMEOUT 30
 GOTO CBFFR_
 :CBFFRTS
 SET n=0
@@ -128,7 +128,7 @@ cd C:/
 COLOR 0F
 cd -cba-py
 python cbffrts.py %MODEL%
-TIMEOUT 5
+TIMEOUT 30
 GOTO CBFFRTS_
 :EXIT
 GOTO :EOF
