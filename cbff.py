@@ -86,8 +86,6 @@ if "HTTP 404" not in dec:
               mod = 'REC'
       else:
               mod = 'PLAY'
-      print
-      print (colored(" => Selected Mode => {} <=", "yellow", "on_blue")).format(mod)
 
       timestamp = str(time.strftime("%d%m%Y-%H%M%S"))
       path = config.get('folders', 'output_folder')
@@ -99,13 +97,16 @@ if "HTTP 404" not in dec:
       if mod == 'PLAY':
          print
          print (colored(" => FFPLAY PLAY => {} <=", "yellow", "on_magenta")).format(filename)
-         command = ('ffplay -hide_banner -loglevel panic -i {} -infbuf -autoexit -x 640 -y 480 -window_title "{} * {}"'.format(hlsurl,filename,mn))
+         command = ('{} -hide_banner -loglevel panic -i {} -infbuf -autoexit -x 640 -y 480 -window_title "{} * {}"'.format(ffplay,hlsurl,filename,mn))
          os.system(command)
+         time.sleep(1)    # pause 1 second
+         print(colored(" => END <=", "yellow","on_blue"))
+         sys.exit()
 
       if mod == 'REC':
          print
          print (colored(" => FFMPEG RECORD => {} <=", "yellow", "on_red")).format(filename)
-         command = ('ffmpeg -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k -f flv {}'.format(hlsurl,pf))
+         command = ('{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k -f flv {}'.format(ffmpeg,hlsurl,pf))
          os.system(command)
          time.sleep(1)    # pause 1 second
          print(colored(" => END <=", "yellow","on_blue"))
