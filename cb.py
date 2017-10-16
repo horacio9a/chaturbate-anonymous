@@ -105,7 +105,7 @@ if "HTTP 404" not in dec:
       if mod == 'PLAY':
          print
          print (colored(" => FFPLAY PLAY => {} <=", "yellow", "on_magenta")).format(filename)
-         command = ('ffplay -hide_banner -loglevel panic -i {} -infbuf -autoexit -x 640 -y 480 -window_title "{} * {}"'.format(hlsurl,filename,mn))
+         command = ('{} -hide_banner -loglevel panic -i {} -infbuf -autoexit -x 640 -y 480 -window_title "{} * {}"'.format(ffplay,hlsurl,filename,mn))
          os.system(command)
          time.sleep(1)    # pause 1 second
          print(colored(" => END <=", "yellow","on_blue"))
