@@ -1,7 +1,8 @@
-# Chaturbate FFPLAY/FFMPEG Anonymous Freechat Recorder v.1.0.4 by horacio9a for Python 2.7.13
+# Chaturbate FFPLAY/FFMPEG Anonymous Freechat Recorder v.1.0.5 by horacio9a for Python 2.7.13
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
 urllib3.disable_warnings()
+from urllib3 import PoolManager
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from colorama import init, Fore, Back, Style
@@ -33,14 +34,21 @@ print (colored(" => Selected CB Model => {} <=", "yellow", "on_blue")).format(mo
 print
 
 url ='https://chaturbate.com/{}/'.format(model)
-http_pool = urllib3.connection_from_url(url)
-r = http_pool.urlopen('GET',url)
+manager = PoolManager(10)
+r = manager.request('GET', url)
 enc = (r.data)
 dec=urllib.unquote(enc).decode()
 
 if "HTTP 404" not in dec:
- pwd0 = dec.split(' password: ')[1]
- pwd = pwd0.split("'")[0]
+ try:
+  pwd0 = dec.split(' password: ')[1]
+  pwd = pwd0.split("'")[0]
+ except:
+  print(colored(" => Try again <=", "yellow",'on_red'))
+  print
+  time.sleep(1)    # pause 1 second
+  print(colored(" => END <=", "yellow","on_blue"))
+  sys.exit()
 
  if "currently offline" not in dec:
   hlsurl0 = dec.split("source src='")[1]
@@ -55,7 +63,15 @@ if "HTTP 404" not in dec:
    if len(hlsurl1) > 1:
       hlsurl2 = hlsurl1.split('&amp')[0]
       hlsurl = re.sub('_fast_', '_', hlsurl2)
-      print (colored(" => HLS URL => {} <=", "yellow", "on_blue")).format(hlsurl)
+
+      if "_aac" not in hlsurl:
+        urlf = 'amlst'
+      else:
+        urlf = 'aac'
+
+      bg0 = dec.split("gender: '")[1]
+      bg = bg0.split("'")[0]
+      print (colored(" => INFO => HLS_URL: ({}) * BG: ({}) <= ", "yellow", "on_blue")).format(urlf,bg)
 
       while True:
            try:
@@ -77,16 +93,18 @@ if "HTTP 404" not in dec:
       path = config.get('folders', 'output_folder')
       filename = model + '_CB_' + timestamp + '.flv'
       pf = (path + filename)
+      ffplay = config.get('files', 'ffplay')
+      ffmpeg = config.get('files', 'ffmpeg')
 
       if mod == 'PLAY':
          print
-         print (colored(" => Start ffplay => PLAY => {} <=", "white", "on_magenta")).format(filename)
+         print (colored(" => FFPLAY PLAY => {} <=", "yellow", "on_magenta")).format(filename)
          command = ('ffplay -hide_banner -loglevel panic -i {} -infbuf -autoexit -x 640 -y 480 -window_title "{} * {}"'.format(hlsurl,filename,mn))
          os.system(command)
 
       if mod == 'REC':
          print
-         print (colored(" => Start ffmpeg => RECORD => {} <=", "white", "on_red")).format(filename)
+         print (colored(" => FFMPEG RECORD => {} <=", "yellow", "on_red")).format(filename)
          command = ('ffmpeg -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k -f flv {}'.format(hlsurl,pf))
          os.system(command)
          time.sleep(1)    # pause 1 second
