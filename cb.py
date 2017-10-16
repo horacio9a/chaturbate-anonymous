@@ -1,7 +1,8 @@
-# Chaturbate Anonymous Freechat RTMP Recorder v.1.0.4 by horacio9a for Python 2.7.13
+# Chaturbate Anonymous Freechat RTMP Recorder v.1.0.5 by horacio9a for Python 2.7.13
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
 urllib3.disable_warnings()
+from urllib3 import PoolManager
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from colorama import init, Fore, Back, Style
@@ -33,14 +34,21 @@ print (colored(" => Selected CB Model => {} <=", "yellow", "on_blue")).format(mo
 print
 
 url ='https://chaturbate.com/{}/'.format(model)
-http_pool = urllib3.connection_from_url(url)
-r = http_pool.urlopen('GET',url)
+manager = PoolManager(10)
+r = manager.request('GET', url)
 enc = (r.data)
 dec=urllib.unquote(enc).decode()
 
 if "HTTP 404" not in dec:
- pwd0 = dec.split(' password: ')[1]
- pwd = pwd0.split("'")[0]
+ try:
+  pwd0 = dec.split(' password: ')[1]
+  pwd = pwd0.split("'")[0]
+ except:
+  print(colored(" => Try again <=", "yellow",'on_red'))
+  print
+  time.sleep(1)    # pause 1 second
+  print(colored(" => END <=", "yellow","on_blue"))
+  sys.exit()
 
  if "currently offline" not in dec:
   hlsurl0 = dec.split("source src='")[1]
@@ -71,7 +79,7 @@ if "HTTP 404" not in dec:
       bg = bg0.split("'")[0]
       origin = random.randint(3,15)
       swf = 'https://chaturbate.com/static/flash/CBV_2p{}.swf'.format(fv)
-      print (colored(" => INFO => HLS_URL: ({}) * BG: ({}) * EDGE: {} * ORIGIN: {} <=", "white", "on_blue")).format(urlf,bg,edge,origin)
+      print (colored(" => INFO => HLS_URL: ({}) * BG: ({}) * EDGE: {} * ORIGIN: {} <=", "yellow", "on_blue")).format(urlf,bg,edge,origin)
 
       while True:
            try:
@@ -91,10 +99,12 @@ if "HTTP 404" not in dec:
       path = config.get('folders', 'output_folder')
       filename = model + '_CB_' + timestamp + '.flv'
       pf = (path + filename)
+      rtmp = config.get('files', 'rtmpdump')
+      ffplay = config.get('files', 'ffplay')
 
       if mod == 'PLAY':
          print
-         print (colored(" => Start ffplay => PLAY => {} <=", "white", "on_magenta")).format(filename)
+         print (colored(" => FFPLAY PLAY => {} <=", "yellow", "on_magenta")).format(filename)
          command = ('ffplay -hide_banner -loglevel panic -i {} -infbuf -autoexit -x 640 -y 480 -window_title "{} * {}"'.format(hlsurl,filename,mn))
          os.system(command)
          time.sleep(1)    # pause 1 second
@@ -103,8 +113,8 @@ if "HTTP 404" not in dec:
 
       if mod == 'REC':
          print
-         print (colored(" => Start rtmpdump => RECORD => {} <=", "white", "on_red")).format(filename)
-         command = 'rtmpdump -r"rtmp://edge{}.stream.highwebmedia.com/live-edge" -a"live-edge" -W"{}" -p"{}" -CS:AnonymousUser -CS:{} -CS:2.{} -CS:anonymous -CS:{} --live -y"mp4:rtmp://origin{}.stream.highwebmedia.com/live-origin/{}" -o"{}" -q'.format(edge,swf,url,model,fv,rp,origin,model,pf)
+         print (colored(" => RTMP REC => {} <=", "yellow", "on_red")).format(filename)
+         command = '{} -r"rtmp://edge{}.stream.highwebmedia.com/live-edge" -a"live-edge" -W"{}" -p"{}" -CS:AnonymousUser -CS:{} -CS:2.{} -CS:anonymous -CS:{} --live -y"mp4:rtmp://origin{}.stream.highwebmedia.com/live-origin/{}" -o"{}" -q'.format(rtmp,edge,swf,url,model,fv,rp,origin,model,pf)
          os.system(command)
          print
          time.sleep(1)    # pause 1 second
