@@ -63,12 +63,11 @@ if "HTTP 404" not in dec:
       path = config.get('folders', 'output_folder')
       filename = model + '_CB_' + timestamp + '.flv'
       pf = (path + filename)
-      ffplay = config.get('files', 'ffplay')
       ffmpeg = config.get('files', 'ffmpeg')
 
       print
       print (colored(" => FFMPEG RECORD => {} <=", "yellow", "on_red")).format(filename)
-      command = ('ffmpeg -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k {}'.format(hlsurl,pf))
+      command = ('{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k {}'.format(ffmpeg,hlsurl,pf))
       os.system(command)
       time.sleep(1)    # pause 1 second
       print(colored(" => END <=", "yellow","on_blue"))
