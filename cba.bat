@@ -3,14 +3,15 @@ SETLOCAL EnableDelayedExpansion
 :START
 CLS
 ECHO.
-SET /P MODE=EXIT(5) CBFFRTS(4) CBFFR(3) CBR(2) CBFF(1) CB(0)(ENTER)(%MODE%): 
+SET /P MODE=EXIT(6) CBSLR(5) CBYTR(4) CBR(3) CBSL(2) CBYT(1) CB(0)(ENTER)(%MODE%): 
 IF "%MODE%"=="" GOTO CB
 IF "%MODE%"=="0" GOTO CB
-IF "%MODE%"=="1" GOTO CBFF
-IF "%MODE%"=="2" GOTO CBR
-IF "%MODE%"=="3" GOTO CBFFR
-IF "%MODE%"=="4" GOTO CBFFRTS
-IF "%MODE%"=="5" GOTO EXIT
+IF "%MODE%"=="1" GOTO CBYT
+IF "%MODE%"=="2" GOTO CBSL
+IF "%MODE%"=="3" GOTO CBR
+IF "%MODE%"=="4" GOTO CBYTR
+IF "%MODE%"=="5" GOTO CBSLR
+IF "%MODE%"=="6" GOTO EXIT
 :CB
 ECHO.
 CLS && ECHO #################################################
@@ -23,15 +24,27 @@ python cb.py
 ECHO.
 PAUSE
 GOTO START
-:CBFF
+:CBYT
 ECHO.
 CLS && ECHO #################################################
-ECHO ### CBFF ###### R E C O R D I N G ###############
+ECHO ### CBYT ###### R E C O R D I N G ###############
 ECHO #################################################
 cd C:/
 COLOR 0F
 cd -cba-py
-python cbff.py
+python cbyt.py
+ECHO.
+PAUSE
+GOTO START
+:CBSL
+ECHO.
+CLS && ECHO #################################################
+ECHO ### CBSL ###### R E C O R D I N G ###############
+ECHO #################################################
+cd C:/
+COLOR 0F
+cd -cba-py
+python cbsl.py
 ECHO.
 PAUSE
 GOTO START
@@ -43,7 +56,7 @@ SET _fav!n!=%%A
 ECHO !n! %%A
 )
 ECHO.
-SET /P MODEL=Choose CB MODEL Name (%M%:%MODEL%): 
+SET /P MODEL=Choose CB Model Name (%M%): 
 FOR /L %%f IN (1,1,!n!) DO (
 IF /I '%MODEL%'=='%%f' SET M=%%f
 )
@@ -58,7 +71,7 @@ SET MODELNAME=%MODEL% #####################################
 SET _MODEL_=%MODELNAME:~0,33%
 ECHO.
 CLS && ECHO #################################################
-ECHO ### CB-R ###### R E C O R D I N G ###############
+ECHO ### CBR ####### R E C O R D I N G ###############
 ECHO ############### %_MODEL_%
 ECHO #################################################
 cd C:/
@@ -67,7 +80,7 @@ cd -cba-py
 python cbr.py %MODEL%
 TIMEOUT 30
 GOTO CBR_
-:CBFFR
+:CBYTR
 SET n=0
 FOR /F "tokens=*" %%A IN (C:/Windows/CB_Model.txt) DO (
 SET /A n=n+1
@@ -75,7 +88,7 @@ SET _fav!n!=%%A
 ECHO !n! %%A
 )
 ECHO.
-SET /P MODEL=Choose CB MODEL Name (%M%:%MODEL%): 
+SET /P MODEL=Choose CB Model Name (%M%): 
 FOR /L %%f IN (1,1,!n!) DO (
 IF /I '%MODEL%'=='%%f' SET M=%%f
 )
@@ -87,19 +100,19 @@ IF !n!==%M% SET MODEL=%%A
 ECHO.
 SET MODELNAME=%MODEL% #####################################
 SET _MODEL_=%MODELNAME:~0,33%
-:CBFFR_
+:CBYTR_
 ECHO.
 CLS && ECHO #################################################
-ECHO ### CBFFR ##### R E C O R D I N G ###############
+ECHO ### CBYTR ##### R E C O R D I N G ###############
 ECHO ############### %_MODEL_%
 ECHO #################################################
 cd C:/
 COLOR 0F
 cd -cba-py
-python cbffr.py %MODEL%
+python cbytr.py %MODEL%
 TIMEOUT 30
-GOTO CBFFR_
-:CBFFRTS
+GOTO CBYTR_
+:CBSLR
 SET n=0
 FOR /F "tokens=*" %%A IN (C:/Windows/CB_Model.txt) DO (
 SET /A n=n+1
@@ -107,7 +120,7 @@ SET _fav!n!=%%A
 ECHO !n! %%A
 )
 ECHO.
-SET /P MODEL=Choose CB MODEL Name (%M%:%MODEL%): 
+SET /P MODEL=Choose CB Model Name (%M%): 
 FOR /L %%f IN (1,1,!n!) DO (
 IF /I '%MODEL%'=='%%f' SET M=%%f
 )
@@ -119,18 +132,18 @@ IF !n!==%M% SET MODEL=%%A
 ECHO.
 SET MODELNAME=%MODEL% #####################################
 SET _MODEL_=%MODELNAME:~0,33%
-:CBFFRTS_
+:CBSLR_
 ECHO.
 CLS && ECHO #################################################
-ECHO ### CBFFRTS ### R E C O R D I N G ###############
+ECHO ### CBSLR ##### R E C O R D I N G ###############
 ECHO ############### %_MODEL_%
 ECHO #################################################
 cd C:/
 COLOR 0F
 cd -cba-py
-python cbffrts.py %MODEL%
+python cbslr.py %MODEL%
 TIMEOUT 30
-GOTO CBFFRTS_
+GOTO CBSLR_
 :EXIT
 GOTO :EOF
 ENDLOCAL
