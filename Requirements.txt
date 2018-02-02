@@ -5,3 +5,4 @@ Command==0.1.0
 colorama==0.3.7
 termcolor==1.1.0
 configparser==3.5.0
+streamlink==0.9.0
