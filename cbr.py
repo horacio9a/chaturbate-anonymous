@@ -1,4 +1,5 @@
-# Chaturbate Remote Anonymous Freechat RTMP Recorder v.1.0.5 by horacio9a for Python 2.7.13
+# Chaturbate Remote Anonymous Freechat RTMP Recorder v.1.0.7 by horacio9a for Python 2.7.14
+# coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
 urllib3.disable_warnings()
@@ -33,7 +34,6 @@ if "HTTP 404" not in dec:
  except:
   print(colored(" => Try again <=", "yellow",'on_red'))
   print
-  time.sleep(1)    # pause 1 second
   print(colored(" => END <=", "yellow","on_blue"))
   sys.exit()
 
@@ -41,15 +41,15 @@ if "HTTP 404" not in dec:
   hlsurl0 = dec.split("source src='")[1]
   hlsurl1 = hlsurl0.split("'")[0]
 
-  if len(hlsurl1) > 410:
+  if len(hlsurl1) > 180:
    print(colored(" => TRY AGAIN <=", "yellow","on_blue"))
    sys.exit()
   else:
    pass
 
    if len(hlsurl1) > 1:
-      rp0 = hlsurl1.split('rp=')[1]
-      rp = rp0.split('&')[0]
+      rp0 = dec.split("room_password: '")[1]
+      rp = rp0.split("'")[0]
       hlsurl2 = hlsurl1.split('&amp')[0]
       hlsurl = re.sub('_fast_', '_', hlsurl2)
 
@@ -75,31 +75,27 @@ if "HTTP 404" not in dec:
       rtmp = config.get('files', 'rtmpdump')
 
       print
-      print (colored(" => RTMP REC => {} <=", "yellow", "on_red")).format(filename)
+      print (colored(" => RTMP-REC => {} <=", "yellow", "on_red")).format(filename)
+      print
       command = '{} -r"rtmp://edge{}.stream.highwebmedia.com/live-edge" -a"live-edge" -W"{}" -p"{}" -CS:AnonymousUser -CS:{} -CS:2.{} -CS:anonymous -CS:{} --live -y"mp4:rtmp://origin{}.stream.highwebmedia.com/live-origin/{}" -o"{}" -q'.format(rtmp,edge,swf,url,model,fv,rp,origin,model,pf)
       os.system(command)
-      print
-      time.sleep(1)    # pause 1 second
       print(colored(" => END <=", "yellow","on_blue"))
       sys.exit()
 
    else:
       print(colored(" => Model is PVT/HIDDEN or AWAY <=", "yellow","on_red"))
       print
-      time.sleep(1)    # pause 1 second
       print(colored(" => END <=", "yellow","on_blue"))
       sys.exit()
 
  else:
    print(colored(" => Model is OFFLINE <=", "yellow","on_red"))
    print
-   time.sleep(1)    # pause 1 second
    print(colored(" => END <=", "yellow","on_blue"))
    sys.exit()
 
 else:
    print(colored(" => Page Not Found <=", 'yellow','on_red'))
    print
-   time.sleep(1)    # pause 1 second
    print(colored(" => END <=", "yellow","on_blue"))
    sys.exit()
