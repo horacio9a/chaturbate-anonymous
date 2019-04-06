@@ -82,7 +82,7 @@ if mod == 'CBOA':
   while True:
      try:
         cboa = int(raw_input(colored(' => Select => <500(0) <1000(1) <1500(2) <2000(3) <2500(4) <3000(5) <3500(6) => ', 'yellow', 'on_blue')))
-        print()
+        print
         break
      except ValueError:
         print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
