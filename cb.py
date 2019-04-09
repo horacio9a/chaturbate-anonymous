@@ -307,8 +307,7 @@ if 'HTTP 404' not in dec:
    pass
 
    if len(hlsurl1) > 1:
-      hlsurl2 = hlsurl1.split('?')[0]
-      hlsurl = re.sub('_fast_', '_', hlsurl2)
+      hlsurl = hlsurl1.split('?')[0]
 
       try:
          rn0 = dec.split('Real Name:</dt><dd>')[1]
@@ -332,10 +331,10 @@ if 'HTTP 404' not in dec:
             prog = int(raw_input(colored(' => Mode => Exit(6) => URL(5) => YTDL(4) => SL(3) => LS(2) => FF-FLV(1) => FF-VIEW(0) => ', 'yellow', 'on_blue')))
             break
          except ValueError:
-            print(colored('\n => Input must be a number <=', 'white', 'on_red'))
+            print(colored('\n => Input must be a number <=', 'yellow', 'on_red'))
       if prog > 6:
          print(colored('\n => Too big number <=', 'yellow', 'on_red'))
-         sys.exit()
+         prg = 'EXIT'
       if prog == 0:
          prg = 'FF-VIEW'
       if prog == 1:
@@ -371,15 +370,36 @@ if 'HTTP 404' not in dec:
       if prg == 'FF-VIEW':
          print
          print (colored(' => FF-PLAY => {} <=', 'yellow', 'on_magenta')).format(filename)
-         command = ('{} -hide_banner -loglevel panic -i {} -infbuf -autoexit -x 640 -y 480 -window_title "{} * {} {}"'.format(ffplay,hlsurl,filename,mn,mod))
+         command = ('{} -hide_banner -loglevel panic -i {} -vf scale=640:480 -infbuf -framedrop -autoexit -window_title "{} * {} {}"'.format(ffplay,hlsurl,filename,mn,mod))
          os.system(command)
-         print(colored(' => END <=', 'yellow','on_blue'))
-         sys.exit()
+         while True:
+            try:
+               prog = int(raw_input(colored(' => Mode => URL(5) => YTDL(4) => SL(3) => LS(2) => FF-FLV(1) => Exit(0) => ', 'yellow', 'on_blue')))
+               break
+            except ValueError:
+               print(colored('\n => Input must be a number <=', 'yellow', 'on_red'))
+         if prog > 5:
+            print(colored('\n => Too big number <=', 'yellow', 'on_red'))
+            prg = 'EXIT'
+         if prog == 0:
+            prg = 'EXIT'
+         if prog == 1:
+            prg = 'FF-FLV'
+         if prog == 2:
+            prg = 'LS'
+         if prog == 3:
+            prg = 'SL'
+         if prog == 4:
+            prg = 'YTDL'
+         if prog == 5:
+            prg = 'URL'
+         if prog == 6:
+            prg = 'EXIT'
 
       if prg == 'FF-FLV':
          print
          print (colored(' => FF-FLV-REC => {} <=', 'yellow', 'on_red')).format(fn1)
-         command = '{} -hide_banner -loglevel panic -i {} -c:v copy -map 0:1 -map 0:2 -c:a aac -b:a 160k {}'.format(ffmpeg,hlsurl,pf1)
+         command = '{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k {}'.format(ffmpeg,hlsurl,pf1)
          os.system(command)
          print(colored(' => END <=', 'yellow','on_blue'))
          sys.exit()
@@ -427,7 +447,6 @@ if 'HTTP 404' not in dec:
       if prg == 'EXIT':
          print
          print(colored(' => END <=', 'yellow','on_blue'))
-         time.sleep(3)
          sys.exit()
 
       else:
