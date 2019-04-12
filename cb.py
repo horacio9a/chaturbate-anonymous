@@ -275,7 +275,7 @@ url ='https://chaturbate.com/{}/'.format(model)
 manager = PoolManager(10)
 r = manager.request('GET', url)
 enc = (r.data)
-dec=urllib.unquote(enc).decode()
+dec=urllib.unquote(enc)
 
 if 'has been banned' in dec:
  print(colored(' => This room is banned <=', 'yellow','on_red'))
@@ -331,9 +331,11 @@ if 'HTTP 404' not in dec:
             prog = int(raw_input(colored(' => Mode => Exit(6) => URL(5) => YTDL(4) => SL(3) => LS(2) => FF-FLV(1) => FF-VIEW(0) => ', 'yellow', 'on_blue')))
             break
          except ValueError:
-            print(colored('\n => Input must be a number <=', 'yellow', 'on_red'))
+            print
+            print(colored(' => Input must be a number <=', 'yellow', 'on_red'))
       if prog > 6:
-         print(colored('\n => Too big number <=', 'yellow', 'on_red'))
+         print
+         print(colored(' => Too big number <=', 'yellow', 'on_red'))
          prg = 'EXIT'
       if prog == 0:
          prg = 'FF-VIEW'
@@ -374,12 +376,15 @@ if 'HTTP 404' not in dec:
          os.system(command)
          while True:
             try:
+               print
                prog = int(raw_input(colored(' => Mode => URL(5) => YTDL(4) => SL(3) => LS(2) => FF-FLV(1) => Exit(0) => ', 'yellow', 'on_blue')))
                break
             except ValueError:
-               print(colored('\n => Input must be a number <=', 'yellow', 'on_red'))
+               print
+               print(colored(' => Input must be a number <=', 'yellow', 'on_red'))
          if prog > 5:
-            print(colored('\n => Too big number <=', 'yellow', 'on_red'))
+            print
+            print(colored(' => Too big number <=', 'yellow', 'on_red'))
             prg = 'EXIT'
          if prog == 0:
             prg = 'EXIT'
