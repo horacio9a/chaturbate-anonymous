@@ -26,7 +26,7 @@ url ='https://chaturbate.com/{}/'.format(model)
 manager = PoolManager(10)
 r = manager.request('GET', url)
 enc = (r.data)
-dec=urllib.unquote(enc).decode()
+dec=urllib.unquote(enc)
 
 if 'has been banned' in dec:
  print(colored(' => This room is banned <=', 'yellow','on_red'))
