@@ -1,4 +1,4 @@
-# Chaturbate FFPLAY/LIVESTREAMER/STREAMLINK/FFMPEG/YTDL Anonymous Freechat Recorder v.1.0.8 by horacio9a for Python 2.7.16
+# Chaturbate FFPLAY/LIVESTREAMER/STREAMLINK/FFMPEG/YTDL Anonymous Freechat Recorder v.1.0.9 by horacio9a for Python 2.7.16
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -288,17 +288,17 @@ else:
 
 if 'HTTP 404' not in dec:
  try:
-  pwd0 = dec.split(' password: ')[1]
-  pwd = pwd0.split("'")[0]
+  pwd0 = dec.split('broadcaster_username')[1]
+  pwd = pwd0.split(':')[0]
  except:
   print(colored(' => Wrong model name <=', 'yellow','on_red'))
   print
   print(colored(' => END <=', 'yellow','on_blue'))
   sys.exit()
 
- if 'currently offline' not in dec:
-  hlsurl0 = dec.split("source src='")[1]
-  hlsurl1 = hlsurl0.split("'")[0]
+ if 'u0022offline' not in dec:
+  hlsurl0 = dec.split('u0022https:')[1]
+  hlsurl1 = hlsurl0.split('\u0022,')[0]
 
   if len(hlsurl1) > 180:
    print(colored(' => Try again <=', 'yellow','on_blue'))
@@ -307,24 +307,40 @@ if 'HTTP 404' not in dec:
    pass
 
    if len(hlsurl1) > 1:
-      hlsurl = hlsurl1.split('?')[0]
+      hlsurl2 = re.sub('//', 'https://', hlsurl1)
+
+      server1 = hlsurl2.split('\u002Dhls')[0]
+      server = re.sub('live', 'live-hls/', server1)
 
       try:
-         rn0 = dec.split('Real Name:</dt><dd>')[1]
-         rn = rn0.split('</dd>')[0]
+         rp = hlsurl2.split('u002Dsd\u002D')[1]
+      except:
+         rp = hlsurl2.split('u002Dws\u002D')[1]
+
+      hlsurl = ('{}amlst:{}-{}'.format(server,model,rp))
+
+      try:
+         rn0 = dec.split('Real Name:</div>\n                            <div class="data">')[1]
+         rn = rn0.split('</div>')[0]
       except:
          rn = '-'
 
       try:
-         loc0 = dec.split('Location:</dt><dd>')[1]
-         loc = loc0.split('</dd>')[0]
+         loc0 = dec.split('Location:</div>\n                            <div class="data">')[1]
+         loc = loc0.split('</div>')[0]
       except:
          loc = '-'
 
-      bg0 = dec.split("gender: '")[1]
-      bg = bg0.split("'")[0]
+      try:
+         age0 = dec.split('Age:</div>\n                                <div class="data">')[1]
+         age = age0.split('</div>')[0]
+      except:
+         age = '-'
 
-      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Gender: ({}) <=', 'yellow', 'on_blue')).format(rn,loc,bg))
+      bg0 = dec.split('gender\u0022: \u0022')[1]
+      bg = bg0.split('\u0022')[0]
+
+      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Age: ({}) * Gender: ({}) <=', 'yellow', 'on_blue')).format(rn,loc,age,bg))
       while True:
          try:
             print
