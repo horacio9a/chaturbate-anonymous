@@ -277,21 +277,12 @@ r = manager.request('GET', url)
 enc = (r.data)
 dec=urllib.unquote(enc)
 
-if 'has been banned' in dec:
- print(colored(' => This room is banned <=', 'yellow','on_red'))
- print
- print(colored(' => END <=', 'yellow','on_blue'))
- sys.exit()
-
-else:
- pass
-
 if 'HTTP 404' not in dec:
  try:
   pwd0 = dec.split('broadcaster_username')[1]
   pwd = pwd0.split(':')[0]
  except:
-  print(colored(' => Wrong model name <=', 'yellow','on_red'))
+  print(colored(' => Wrong model name or banned <=', 'yellow','on_red'))
   print
   print(colored(' => END <=', 'yellow','on_blue'))
   sys.exit()
@@ -306,18 +297,18 @@ if 'HTTP 404' not in dec:
   else:
    pass
 
-   if len(hlsurl1) > 1:
+   if len(hlsurl1) > 50:
       hlsurl2 = re.sub('//', 'https://', hlsurl1)
 
       server1 = hlsurl2.split('\u002Dhls')[0]
       server = re.sub('live', 'live-hls/', server1)
 
       try:
-         rp = hlsurl2.split('u002Dsd\u002D')[1]
+         rp = hlsurl2.split('sd\u002D')[1]
       except:
-         rp = hlsurl2.split('u002Dws\u002D')[1]
+         rp = hlsurl2.split('ws\u002D')[1]
 
-      hlsurl = ('{}amlst:{}-{}'.format(server,model,rp))
+      hlsurl = ('{}amlst:{}-sd-{}'.format(server,model,rp))
 
       try:
          rn0 = dec.split('Real Name:</div>\n                            <div class="data">')[1]
@@ -337,10 +328,13 @@ if 'HTTP 404' not in dec:
       except:
          age = '-'
 
-      bg0 = dec.split('gender\u0022: \u0022')[1]
-      bg = bg0.split('\u0022')[0]
+      try:
+         bg0 = dec.split('Sex:</div>\n                            <div class="data">')[1]
+         bg = bg0.split('</div>')[0]
+      except:
+         bg = '-'
 
-      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Age: ({}) * Gender: ({}) <=', 'yellow', 'on_blue')).format(rn,loc,age,bg))
+      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Age: ({}) * Sex: ({}) <=', 'yellow', 'on_blue')).format(rn,loc,age,bg))
       while True:
          try:
             print
