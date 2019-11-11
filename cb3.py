@@ -293,8 +293,11 @@ if 'HTTP 404' not in dec:
 
    if len(hlsurl1) > 50:
       hlsurl2 = re.sub('//', 'https://', hlsurl1)
-      hlsurl3 = re.sub('u002Dsd', '', hlsurl2)
-      hlsurl3 = re.sub('u002Dws', '', hlsurl2)
+
+      try:
+         hlsurl3 = re.sub('u002Dsd', '', hlsurl2)
+      except:
+         hlsurl3 = re.sub('u002Dws', '', hlsurl2)
 
       server = hlsurl2.split('live')[0]
 
