@@ -1,4 +1,4 @@
-# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.1.0.8 by horacio9a for Python 3.8.0
+# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.1.0.9 by horacio9a for Python 3.8.0
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -27,28 +27,19 @@ r = manager.request('GET', url)
 enc = quote(r.data)
 dec= unquote(enc)
 
-if 'has been banned' in dec:
- print(colored(' => This room is banned <=', 'yellow','on_red'))
- print()
- print(colored(' => END <=', 'yellow','on_blue'))
- sys.exit()
-
-else:
- pass
-
 if 'HTTP 404' not in dec:
  try:
-  pwd0 = dec.split(' password: ')[1]
-  pwd = pwd0.split("'")[0]
+  pwd0 = dec.split('broadcaster_username')[1]
+  pwd = pwd0.split(':')[0]
  except:
-  print(colored(' => Wrong model name <=', 'yellow','on_red'))
+  print(colored(' => Wrong model name or banned <=', 'yellow','on_red'))
   print()
   print(colored(' => END <=', 'yellow','on_blue'))
   sys.exit()
 
- if 'currently offline' not in dec:
-  hlsurl0 = dec.split("source src='")[1]
-  hlsurl1 = hlsurl0.split("'")[0]
+ if 'u0022offline' not in dec:
+  hlsurl0 = dec.split('u0022https:')[1]
+  hlsurl1 = hlsurl0.split(',')[0]
 
   if len(hlsurl1) > 180:
    print(colored(' => Try again <=', 'yellow','on_blue'))
@@ -56,26 +47,44 @@ if 'HTTP 404' not in dec:
   else:
    pass
 
-   if len(hlsurl1) > 1:
-      hlsurl2 = hlsurl1.split('?')[0]
-      hlsurl = re.sub('_fast_', '_', hlsurl2)
+   if len(hlsurl1) > 50:
+      hlsurl2 = re.sub('//', 'https://', hlsurl1)
+      hlsurl3 = re.sub('u002Dsd', '', hlsurl2)
+      hlsurl3 = re.sub('u002Dws', '', hlsurl2)
+
+      server = hlsurl2.split('live')[0]
+
+      rp1 = hlsurl3.split('amlst:')[1]
+      rp2 = rp1.split('\\u002D')[1]
+      rp = rp2.split('_trns')[0]
+
+      hlsurl = ('{}live-hls/amlst:{}-sd-{}_trns_h264/playlist.m3u8'.format(server,model,rp))
 
       try:
-         rn0 = dec.split('Real Name:</dt><dd>')[1]
-         rn = rn0.split('</dd>')[0]
+         rn0 = dec.split('Real Name:</div>\n                            <div class="data">')[1]
+         rn = rn0.split('</div>')[0]
       except:
          rn = '-'
 
       try:
-         loc0 = dec.split('Location:</dt><dd>')[1]
-         loc = loc0.split('</dd>')[0]
+         loc0 = dec.split('Location:</div>\n                            <div class="data">')[1]
+         loc = loc0.split('</div>')[0]
       except:
          loc = '-'
 
-      bg0 = dec.split("gender: '")[1]
-      bg = bg0.split("'")[0]
+      try:
+         age0 = dec.split('Age:</div>\n                                <div class="data">')[1]
+         age = age0.split('</div>')[0]
+      except:
+         age = '-'
 
-      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Gender: ({}) <= ', 'yellow', 'on_blue')).format(rn,loc,bg))
+      try:
+         bg0 = dec.split('Sex:</div>\n                            <div class="data">')[1]
+         bg = bg0.split('</div>')[0]
+      except:
+         bg = '-'
+
+      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Age: ({}) * Sex: ({}) <=', 'yellow', 'on_blue')).format(rn,loc,age,bg))
 
       timestamp = str(time.strftime('%d%m%Y-%H%M%S'))
       path = config.get('folders', 'output_folder')
