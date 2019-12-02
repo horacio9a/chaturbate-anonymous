@@ -1,4 +1,4 @@
-# Chaturbate FFPLAY/LIVESTREAMER/STREAMLINK/FFMPEG/YTDL Anonymous Freechat Recorder v.1.0.9 by horacio9a for Python 2.7.16
+# Chaturbate FFPLAY/LIVESTREAMER/STREAMLINK/FFMPEG/YTDL Anonymous Freechat Recorder v.1.1.0 by horacio9a for Python 2.7.16
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -303,12 +303,7 @@ if 'HTTP 404' not in dec:
       server1 = hlsurl2.split('\u002Dhls')[0]
       server = re.sub('live', 'live-hls/', server1)
 
-      try:
-         rp = hlsurl2.split('sd\u002D')[1]
-      except:
-         rp = hlsurl2.split('ws\u002D')[1]
-
-      hlsurl = ('{}amlst:{}-sd-{}'.format(server,model,rp))
+      hlsurl = ('{}amlst:{}-trns_h264/playlist.m3u8'.format(server,model))
 
       try:
          rn0 = dec.split('Real Name:</div>\n                            <div class="data">')[1]
