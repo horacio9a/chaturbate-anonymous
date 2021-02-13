@@ -1,9 +1,9 @@
-urllib3==1.24.2
-DateTime==4.1.1
-requests==2.21.0
+urllib3==1.26.3
+DateTime==4.3
+requests==2.25.1
 Command==0.1.0
-colorama==0.4.0
+colorama==0.4.4
 termcolor==1.1.0
-configparser==3.7.4
-beautifulsoup4==4.7.1
-gevent==1.4.0
+configparser==5.0.1
+beautifulsoup4==4.9.3
+gevent==21.1.2
