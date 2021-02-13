@@ -368,7 +368,6 @@ if 'HTTP 404' not in dec:
       pf4 = (path + fn4)
       ffmpeg = config.get('files', 'ffmpeg')
       ffplay = config.get('files', 'ffplay')
-      livestreamer = config.get('files', 'livestreamer')
       streamlink = config.get('files', 'streamlink')
       youtube = config.get('files', 'youtube')
 
