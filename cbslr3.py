@@ -1,4 +1,4 @@
-# Chaturbate STREAMLINK Remote Anonymous Freechat Recorder v.1.0.9 by horacio9a for Python 3.8.0
+# Chaturbate STREAMLINK Remote Anonymous Freechat Recorder v.1.1.1 by horacio9a for Python 3.9.0
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -98,7 +98,7 @@ if 'HTTP 404' not in dec:
       print()
       print((colored(' => SL-REC >>> {} <<<', 'yellow', 'on_red')).format(filename))
       print()
-      command = ('{} hls://{} best -Q -o {}'.format(streamlink,hlsurl,pf))
+      command = ('{} hls://{} best -Q --hls-live-edge 1 --hls-playlist-reload-attempts 9 --hls-segment-threads 3 --hls-segment-timeout 5.0 --hls-timeout 20.0 -o {}'.format(streamlink,hlsurl,pf))
       os.system(command)
       print()
       print(colored(' => END <=', 'yellow','on_blue'))
