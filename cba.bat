@@ -3,20 +3,19 @@ SETLOCAL EnableDelayedExpansion
 :START
 CLS
 ECHO.
-CLS && ECHO ####################################################################################
-ECHO ###   C H A T U R B A T E   A N O N Y M O U S   P Y T H O N   2   S C R I P T   ####
-ECHO ####################################################################################
+CLS && ECHO ###################################################################################
+ECHO ###   C H A T U R B A T E   A N O N Y M O U S   P Y T H O N   2   S C R I P T   ###
+ECHO ###################################################################################
 ECHO.
-SET /P MODE=EXIT(7) CBYTR(6) CBSLR(5) CBLSR(4) CBFFR(3) CB(2) GETOW(1) GETOA(0)(ENTER)(%MODE%): 
+SET /P MODE=EXIT(6) CBYTR(5) CBSLR(4) CBFFR(3) CB(2) GETOW(1) GETOA(0)(ENTER)(%MODE%): 
 IF "%MODE%"=="" GOTO GETOA
 IF "%MODE%"=="0" GOTO GETOA
 IF "%MODE%"=="1" GOTO GETOW
 IF "%MODE%"=="2" GOTO CB
 IF "%MODE%"=="3" GOTO CBFFR
-IF "%MODE%"=="4" GOTO CBLSR
-IF "%MODE%"=="5" GOTO CBSLR
-IF "%MODE%"=="6" GOTO CBYTR
-IF "%MODE%"=="7" GOTO EXIT
+IF "%MODE%"=="4" GOTO CBSLR
+IF "%MODE%"=="5" GOTO CBYTR
+IF "%MODE%"=="6" GOTO EXIT
 :GETOA
 ECHO.
 CLS && ECHO ##################################################
@@ -117,38 +116,6 @@ cd -cba-py
 python cbytr.py %MODEL%
 TIMEOUT 30
 GOTO CBYTR_
-:CBLSR
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/-cba-py/CB_Wanted.txt) DO (
-SET /A n=n+1
-SET _fav!n!=%%A
-ECHO !n! %%A
-)
-ECHO.
-SET /P MODEL=Choose CB Model Name (%M%): 
-FOR /L %%f IN (1,1,!n!) DO (
-IF /I '%MODEL%'=='%%f' SET M=%%f
-)
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/-cba-py/CB_Wanted.txt) DO (
-SET /A n=n+1
-IF !n!==%M% SET MODEL=%%A
-)
-ECHO.
-SET MODELNAME=%MODEL% #####################################
-SET _MODEL_=%MODELNAME:~0,34%
-:CBLSR_
-ECHO.
-CLS && ECHO #################################################
-ECHO ### CBLSR #### R E C O R D I N G ################
-ECHO ############## %_MODEL_%
-ECHO #################################################
-cd C:/
-COLOR 0F
-cd -cba-py
-python cblsr.py %MODEL%
-TIMEOUT 30
-GOTO CBLSR_
 :CBSLR
 SET n=0
 FOR /F "tokens=*" %%A IN (C:/-cba-py/CB_Wanted.txt) DO (
