@@ -1,4 +1,4 @@
-# Chaturbate FFPLAY/LIVESTREAMER/STREAMLINK/FFMPEG/YTDL Anonymous Freechat Recorder v.1.1.0 by horacio9a for Python 3.8.0
+# Chaturbate FFPLAY/STREAMLINK/FFMPEG/YTDL Anonymous Freechat Recorder v.1.1.1 by horacio9a for Python 3.9.0
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -326,7 +326,7 @@ if 'HTTP 404' not in dec:
       while True:
          try:
             print()
-            prog = int(input(' => Mode => Exit(6) => URL(5) => YTDL(4) => SL(3) => LS(2) => FF-FLV(1) => FF-VIEW(0) => '))
+            prog = int(input(' => Mode => Exit(5) => URL(4) => YTDL(3) => SL(2) => FF-FLV(1) => FF-VIEW(0) => '))
             break
          except ValueError:
             print()
@@ -340,14 +340,12 @@ if 'HTTP 404' not in dec:
       if prog == 1:
          prg = 'FF-FLV'
       if prog == 2:
-         prg = 'LS'
-      if prog == 3:
          prg = 'SL'
-      if prog == 4:
+      if prog == 3:
          prg = 'YTDL'
-      if prog == 5:
+      if prog == 4:
          prg = 'URL'
-      if prog == 6:
+      if prog == 5:
          prg = 'EXIT'
 
       timestamp = str(time.strftime('%d%m%Y-%H%M%S'))
@@ -363,7 +361,6 @@ if 'HTTP 404' not in dec:
       pf4 = (path + fn4)
       ffmpeg = config.get('files', 'ffmpeg')
       ffplay = config.get('files', 'ffplay')
-      livestreamer = config.get('files', 'livestreamer')
       streamlink = config.get('files', 'streamlink')
       youtube = config.get('files', 'youtube')
 
@@ -374,8 +371,7 @@ if 'HTTP 404' not in dec:
          os.system(command)
          while True:
             try:
-               print()
-               prog = int(input(' => Mode => URL(5) => YTDL(4) => SL(3) => LS(2) => FF-FLV(1) => Exit(0) => '))
+               prog = int(input(' => Mode => URL(4) => YTDL(3) => SL(2) => FF-FLV(1) => Exit(0) => '))
                break
             except ValueError:
                print()
@@ -389,29 +385,17 @@ if 'HTTP 404' not in dec:
          if prog == 1:
             prg = 'FF-FLV'
          if prog == 2:
-            prg = 'LS'
-         if prog == 3:
             prg = 'SL'
-         if prog == 4:
+         if prog == 3:
             prg = 'YTDL'
-         if prog == 5:
+         if prog == 4:
             prg = 'URL'
 
       if prg == 'FF-FLV':
          print()
          print ((colored(' => FF-FLV-REC => {} <=', 'yellow', 'on_red')).format(fn1))
-         command = '{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k {}'.format(ffmpeg,hlsurl,pf1)
+         command = '{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 128k {}'.format(ffmpeg,hlsurl,pf1)
          os.system(command)
-         print(colored(' => END <=', 'yellow','on_blue'))
-         sys.exit()
-
-      if prg == 'LS':
-         print()
-         print ((colored(' => LS-REC >>> {}.mp4 <<<', 'yellow', 'on_red')).format(filename))
-         print()
-         command = ('{} hlsvariant://{} best -Q -o {}'.format(livestreamer,hlsurl,pf2))
-         os.system(command)
-         print()
          print(colored(' => END <=', 'yellow','on_blue'))
          sys.exit()
 
@@ -419,7 +403,7 @@ if 'HTTP 404' not in dec:
          print()
          print ((colored(' => SL-REC >>> {}.mp4 <<<', 'yellow', 'on_red')).format(filename))
          print()
-         command = ('{} hls://{} best -Q -o {}'.format(streamlink,hlsurl,pf2))
+         command = ('{} hls://{} best -Q --hls-live-edge 1 --hls-playlist-reload-attempts 9 --hls-segment-threads 3 --hls-segment-timeout 5.0 --hls-timeout 20.0 -o {}'.format(streamlink,hlsurl,pf2))
          os.system(command)
          print()
          print(colored(' => END <=', 'yellow','on_blue'))
@@ -429,7 +413,7 @@ if 'HTTP 404' not in dec:
          print()
          print ((colored(' => YTDL-REC => {}.ts <=', 'yellow', 'on_red')).format(filename))
          print()
-         command = ('{} -i --hls-use-mpegts --no-part -q {} -o {}'.format(youtube,hlsurl,pf3))
+         command = ('{} -i --geo-bypass --hls-use-mpegts --no-part -q --no-warnings --no-check-certificate {} -o {}'.format(youtube,hlsurl,pf3))
          os.system(command)
          print()
          print(colored(' => END <=', 'yellow','on_blue'))
