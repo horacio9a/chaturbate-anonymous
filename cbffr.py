@@ -1,4 +1,4 @@
-# Chaturbate FFMPEG Remote Anonymous Freechat Recorder v.1.0.9 by horacio9a for Python 2.7.16
+# Chaturbate FFMPEG Remote Anonymous Freechat Recorder v.1.1.1 by horacio9a for Python 2.7.16
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -92,7 +92,7 @@ if 'HTTP 404' not in dec:
       print
       print((colored(' => FF-FLV-REC => {} <=', 'yellow', 'on_red')).format(filename))
       print
-      command = '{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 160k {}'.format(ffmpeg,hlsurl,pf)
+      command = '{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 128k {}'.format(ffmpeg,hlsurl,pf)
       os.system(command)
       print
       print(colored(' => END <= ', 'yellow','on_blue'))
