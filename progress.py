@@ -1,26 +1,26 @@
 import sys
-
 from collections import deque
+from shutil import get_terminal_size
 from time import time
 
-from ..compat import is_win32, get_terminal_size
+from streamlink_cli.compat import is_win32
 
 PROGRESS_FORMATS = (
-    "[download] >>> {prefix}  ({written}) ",
+    "[download] >>> {prefix}  ({written} @ {speed}/s) ",
 )
 
 # widths generated from
 # http://www.unicode.org/Public/4.0-Update/EastAsianWidth-4.0.0.txt
-
 widths = [
-    (13, 1),    (15, 0),    (126, 1),   (159, 0),   (687, 1),   (710, 0),
-    (711, 1),   (727, 0),   (733, 1),   (879, 0),   (1154, 1),  (1161, 0),
-    (4347, 1),  (4447, 2),  (7467, 1),  (7521, 0),  (8369, 1),  (8426, 0),
-    (9000, 1),  (9002, 2),  (11021, 1), (12350, 2), (12351, 1), (12438, 2),
-    (12442, 0), (19893, 2), (19967, 1), (55203, 2), (63743, 1), (64106, 2),
-    (65039, 1), (65059, 0), (65131, 2), (65279, 1), (65376, 2), (65500, 1),
-    (65510, 2), (120831, 1), (262141, 2), (1114109, 1)
+    (13, 1),    (15, 0),    (126, 1),   (159, 0),   (687, 1),   (710, 0),    # noqa: E241
+    (711, 1),   (727, 0),   (733, 1),   (879, 0),   (1154, 1),  (1161, 0),   # noqa: E241
+    (4347, 1),  (4447, 2),  (7467, 1),  (7521, 0),  (8369, 1),  (8426, 0),   # noqa: E241
+    (9000, 1),  (9002, 2),  (11021, 1), (12350, 2), (12351, 1), (12438, 2),  # noqa: E241
+    (12442, 0), (19893, 2), (19967, 1), (55203, 2), (63743, 1), (64106, 2),  # noqa: E241
+    (65039, 1), (65059, 0), (65131, 2), (65279, 1), (65376, 2), (65500, 1),  # noqa: E241
+    (65510, 2), (120831, 1), (262141, 2), (1114109, 1)                       # noqa: E241
 ]
+
 
 def get_width(o):
     """Returns the screen column width for unicode ordinal."""
@@ -29,11 +29,13 @@ def get_width(o):
             return wid
     return 1
 
+
 def terminal_width(value):
     """Returns the width of the string it would be when displayed."""
     if isinstance(value, bytes):
         value = value.decode("utf8", "ignore")
     return sum(map(get_width, map(ord, value)))
+
 
 def get_cut_prefix(value, max_len):
     """Drops Characters by unicode not by bytes."""
@@ -44,6 +46,7 @@ def get_cut_prefix(value, max_len):
         if terminal_width(value[i:]) <= max_len:
             break
     return value[i:].encode("utf8", "ignore") if should_convert else value[i:]
+
 
 def print_inplace(msg):
     """Clears out the previous line and prints a new one."""
@@ -58,6 +61,7 @@ def print_inplace(msg):
     sys.stderr.write(" " * max(0, spacing))
     sys.stderr.flush()
 
+
 def format_filesize(size):
     """Formats the file size into a human readable format."""
     for suffix in ("bytes", "KB", "MB", "GB", "TB"):
@@ -68,6 +72,7 @@ def format_filesize(size):
                 return "{0:3.1f} {1}".format(size, suffix)
 
         size /= 1024.0
+
 
 def format_time(elapsed):
     """Formats elapsed seconds into a human readable format."""
