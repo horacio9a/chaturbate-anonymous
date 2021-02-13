@@ -378,7 +378,7 @@ if 'HTTP 404' not in dec:
          os.system(command)
          while True:
             try:
-               prog = int(raw_input(colored(' => Mode => EXIT(5) => URL(4) => YTDL(3) => SL(2) => FF-FLV(1) => Exit(0) => ', 'yellow', 'on_blue')))
+               prog = int(raw_input(colored(' => Mode => URL(4) => YTDL(3) => SL(2) => FF-FLV(1) => Exit(0) => ', 'yellow', 'on_blue')))
                break
             except ValueError:
                print
@@ -397,8 +397,6 @@ if 'HTTP 404' not in dec:
             prg = 'YTDL'
          if prog == 4:
             prg = 'URL'
-         if prog == 5:
-            prg = 'EXIT'
 
       if prg == 'FF-FLV':
          print
