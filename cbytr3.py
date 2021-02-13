@@ -1,4 +1,4 @@
-# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.1.0.9 by horacio9a for Python 3.8.0
+# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.1.1.1 by horacio9a for Python 3.9.0
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -98,7 +98,7 @@ if 'HTTP 404' not in dec:
       print()
       print((colored(' => YTDL-REC => {} <=', 'yellow', 'on_red')).format(filename))
       print()
-      command = ('{} -i --hls-use-mpegts --no-part -q {} -o {}'.format(youtube,hlsurl,pf))
+      command = ('{} -i --geo-bypass --hls-use-mpegts --no-part -q --no-warnings --no-check-certificate {} -o {}'.format(youtube,hlsurl,pf))
       os.system(command)
       print()
       print(colored(' => END <=', 'yellow','on_blue'))
