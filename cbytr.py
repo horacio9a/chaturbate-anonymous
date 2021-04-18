@@ -39,7 +39,7 @@ if 'HTTP 404' not in dec:
 
  if 'u0022offline' not in dec:
   hlsurl0 = dec.split('https://edge')[1]
-  hlsurl1 = hlsurl0.split('\u0022,')[0]
+  hlsurl1 = hlsurl0.split('m3u8')[0]
 
   if len(hlsurl1) > 190:
    print(colored(' => Try again <=', 'yellow','on_blue'))
@@ -49,7 +49,7 @@ if 'HTTP 404' not in dec:
 
    if len(hlsurl1) > 50:
       hlsurl2 = hlsurl1.replace('\u002D', '-')
-      hlsurl = ('https://edge{}'.format(hlsurl2))
+      hlsurl = ('https://edge{}m3u8'.format(hlsurl2))
       print ((colored(' => HlsUrl => {} <=', 'yellow', 'on_blue')).format(hlsurl))
       print
 
