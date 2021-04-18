@@ -1,4 +1,4 @@
-# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.1.1.1 by horacio9a for Python 3.9.0
+# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.1.1.2 by horacio9a for Python 3.9.1
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
@@ -38,30 +38,20 @@ if 'HTTP 404' not in dec:
   sys.exit()
 
  if 'u0022offline' not in dec:
-  hlsurl0 = dec.split('u0022https:')[1]
-  hlsurl1 = hlsurl0.split(',')[0]
+  hlsurl0 = dec.split('https://edge')[1]
+  hlsurl1 = hlsurl0.split('m3u8')[0]
 
-  if len(hlsurl1) > 180:
+  if len(hlsurl1) > 190:
    print(colored(' => Try again <=', 'yellow','on_blue'))
    sys.exit()
   else:
    pass
 
    if len(hlsurl1) > 50:
-      hlsurl2 = re.sub('//', 'https://', hlsurl1)
-
-      try:
-         hlsurl3 = re.sub('u002Dsd', '', hlsurl2)
-      except:
-         hlsurl3 = re.sub('u002Dws', '', hlsurl2)
-
-      server = hlsurl2.split('live')[0]
-
-      rp1 = hlsurl3.split('amlst:')[1]
-      rp2 = rp1.split('\\u002D')[1]
-      rp = rp2.split('_trns')[0]
-
-      hlsurl = ('{}live-hls/amlst:{}-sd-{}_trns_h264/playlist.m3u8'.format(server,model,rp))
+      hlsurl2 = hlsurl1.replace('\\u002D', '-')
+      hlsurl = ('https://edge{}m3u8'.format(hlsurl2))
+      print ((colored(' => HlsUrl => {} <=', 'yellow', 'on_blue')).format(hlsurl))
+      print ()
 
       try:
          rn0 = dec.split('Real Name:</div>\n                            <div class="data">')[1]
