@@ -14,7 +14,7 @@ config.read('config.ini')
 
 init()
 print()
-print(colored(' => START <=', 'yellow', 'on_blue'))
+print(colored(' => START <=', 'white', 'on_blue'))
 print()
 
 while True:
@@ -23,9 +23,9 @@ while True:
       print()
       break
    except ValueError:
-      print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+      print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
 if mode > 2:
-   print(colored(' => Too big number <=', 'yellow', 'on_red'))
+   print(colored(' => Too big number <=', 'white', 'on_red'))
    sys.exit()
 if mode == 0:
    mod = 'CBW'
@@ -45,15 +45,15 @@ if mod == 'CBW':
         print()
         nr_lines = sum(1 for line in open(config.get('files', 'wanted_model_list')))
         if mn > nr_lines:
-           print(colored(' => Too big number <=', 'yellow', 'on_red'))
+           print(colored(' => Too big number <=', 'white', 'on_red'))
            print()
-           print(colored(' => END <=', 'yellow','on_blue'))
+           print(colored(' => END <=', 'white','on_blue'))
            sys.exit()
         break
      except ValueError:
-        print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+        print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
   model = open(config.get('files', 'wanted_model_list'), 'r').readlines()[mn-1][:-1]
-  print ((colored(' => Selected CB Wanted Model => {} <=', 'yellow', 'on_blue')).format(model))
+  print ((colored(' => Selected CB Wanted Model => {} <=', 'white', 'on_blue')).format(model))
   print()
 
 if mod == 'CBOW':
@@ -67,15 +67,15 @@ if mod == 'CBOW':
         print()
         nr_lines = sum(1 for line in open(config.get('files', 'online_wanted_model_list')))
         if mn > nr_lines:
-           print(colored(' => Too big number <=', 'yellow', 'on_red'))
+           print(colored(' => Too big number <=', 'white', 'on_red'))
            print()
-           print(colored(' => END <=', 'yellow','on_blue'))
+           print(colored(' => END <=', 'white','on_blue'))
            sys.exit()
         break
      except ValueError:
-        print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+        print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
   model = open(config.get('files', 'online_wanted_model_list'), 'r').readlines()[mn-1][:-1]
-  print ((colored(' => Selected CB Online Wanted Model => {} <=', 'yellow', 'on_blue')).format(model))
+  print ((colored(' => Selected CB Online Wanted Model => {} <=', 'white', 'on_blue')).format(model))
   print()
 
 if mod == 'CBOA':
@@ -85,7 +85,7 @@ if mod == 'CBOA':
         print()
         break
      except ValueError:
-        print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+        print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
   if cboa > 6:
      sys.exit()
   if cboa == 0:
@@ -116,15 +116,15 @@ if mod == 'CBOA':
           print()
           nr_lines = sum(1 for line in open(config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
-             print(colored(' => Too big number <=', 'yellow', 'on_red'))
+             print(colored(' => Too big number <=', 'white', 'on_red'))
              print()
-             print(colored(' => END <=', 'yellow','on_blue'))
+             print(colored(' => END <=', 'white','on_blue'))
              sys.exit()
           break
        except ValueError:
-          print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+          print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
     model = open(config.get('files', 'online_all_model_list'), 'r').readlines()[mn-1][:-1]
-    print ((colored(' => Selected CB Online All Model => {} <=', 'yellow', 'on_blue')).format(model))
+    print ((colored(' => Selected CB Online All Model => {} <=', 'white', 'on_blue')).format(model))
     print()
 
   if oa == 'OA1000':
@@ -140,15 +140,15 @@ if mod == 'CBOA':
           print()
           nr_lines = sum(1 for line in open(config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
-             print(colored(' => Too big number <=', 'yellow', 'on_red'))
+             print(colored(' => Too big number <=', 'white', 'on_red'))
              print()
-             print(colored(' => END <=', 'yellow','on_blue'))
+             print(colored(' => END <=', 'white','on_blue'))
              sys.exit()
           break
        except ValueError:
-          print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+          print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
     model = open(config.get('files', 'online_all_model_list'), 'r').readlines()[mn-1][:-1]
-    print ((colored(' => Selected CB Online All Model => {} <=', 'yellow', 'on_blue')).format(model))
+    print ((colored(' => Selected CB Online All Model => {} <=', 'white', 'on_blue')).format(model))
     print()
 
   if oa == 'OA1500':
@@ -164,15 +164,15 @@ if mod == 'CBOA':
           print()
           nr_lines = sum(1 for line in open(config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
-             print(colored(' => Too big number <=', 'yellow', 'on_red'))
+             print(colored(' => Too big number <=', 'white', 'on_red'))
              print()
-             print(colored(' => END <=', 'yellow','on_blue'))
+             print(colored(' => END <=', 'white','on_blue'))
              sys.exit()
           break
        except ValueError:
-          print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+          print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
     model = open(config.get('files', 'online_all_model_list'), 'r').readlines()[mn-1][:-1]
-    print ((colored(' => Selected CB Online All Model => {} <=', 'yellow', 'on_blue')).format(model))
+    print ((colored(' => Selected CB Online All Model => {} <=', 'white', 'on_blue')).format(model))
     print()
 
   if oa == 'OA2000':
@@ -188,15 +188,15 @@ if mod == 'CBOA':
           print()
           nr_lines = sum(1 for line in open(config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
-             print(colored(' => Too big number <=', 'yellow', 'on_red'))
+             print(colored(' => Too big number <=', 'white', 'on_red'))
              print()
-             print(colored(' => END <=', 'yellow','on_blue'))
+             print(colored(' => END <=', 'white','on_blue'))
              sys.exit()
           break
        except ValueError:
-          print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+          print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
     model = open(config.get('files', 'online_all_model_list'), 'r').readlines()[mn-1][:-1]
-    print ((colored(' => Selected CB Online All Model => {} <=', 'yellow', 'on_blue')).format(model))
+    print ((colored(' => Selected CB Online All Model => {} <=', 'white', 'on_blue')).format(model))
     print()
 
   if oa == 'OA2500':
@@ -212,15 +212,15 @@ if mod == 'CBOA':
           print()
           nr_lines = sum(1 for line in open(config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
-             print(colored(' => Too big number <=', 'yellow', 'on_red'))
+             print(colored(' => Too big number <=', 'white', 'on_red'))
              print()
-             print(colored(' => END <=', 'yellow','on_blue'))
+             print(colored(' => END <=', 'white','on_blue'))
              sys.exit()
           break
        except ValueError:
-          print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+          print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
     model = open(config.get('files', 'online_all_model_list'), 'r').readlines()[mn-1][:-1]
-    print ((colored(' => Selected CB Online All Model => {} <=', 'yellow', 'on_blue')).format(model))
+    print ((colored(' => Selected CB Online All Model => {} <=', 'white', 'on_blue')).format(model))
     print()
 
   if oa == 'OA3000':
@@ -236,15 +236,15 @@ if mod == 'CBOA':
           print()
           nr_lines = sum(1 for line in open(config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
-             print(colored(' => Too big number <=', 'yellow', 'on_red'))
+             print(colored(' => Too big number <=', 'white', 'on_red'))
              print()
-             print(colored(' => END <=', 'yellow','on_blue'))
+             print(colored(' => END <=', 'white','on_blue'))
              sys.exit()
           break
        except ValueError:
-          print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+          print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
     model = open(config.get('files', 'online_all_model_list'), 'r').readlines()[mn-1][:-1]
-    print ((colored(' => Selected CB Online All Model => {} <=', 'yellow', 'on_blue')).format(model))
+    print ((colored(' => Selected CB Online All Model => {} <=', 'white', 'on_blue')).format(model))
     print()
 
   if oa == 'OA3500':
@@ -260,9 +260,9 @@ if mod == 'CBOA':
           print()
           break
        except ValueError:
-          print(colored('\n => Input must be a number <=\n', 'yellow', 'on_red'))
+          print(colored('\n => Input must be a number <=\n', 'white', 'on_red'))
     model = open(config.get('files', 'online_all_model_list'), 'r').readlines()[mn-1][:-1]
-    print ((colored(' => Selected CB Online All Model => {} <=', 'yellow', 'on_blue')).format(model))
+    print ((colored(' => Selected CB Online All Model => {} <=', 'white', 'on_blue')).format(model))
     print()
 
 url ='https://chaturbate.com/{}/'.format(model)
@@ -276,25 +276,24 @@ if 'HTTP 404' not in dec:
   pwd0 = dec.split('broadcaster_username')[1]
   pwd = pwd0.split(':')[0]
  except:
-  print(colored(' => Wrong model name or banned <=', 'yellow','on_red'))
+  print(colored(' => Wrong model name or banned <=', 'white','on_red'))
   print()
-  print(colored(' => END <=', 'yellow','on_blue'))
+  print(colored(' => END <=', 'white','on_blue'))
   sys.exit()
-
+ 
  if 'u0022offline' not in dec:
-  hlsurl0 = dec.split('https://edge')[1]
-  hlsurl1 = hlsurl0.split('m3u8')[0]
+   status0 = dec.split('status\\u0022: ')[1]
+   status1 = status0.split(', \\u0022room')[0]
+   status = status1.replace('\\u0022', '')
+   print ((colored(' => Status => {} <=', 'white', 'on_green')).format(status))
+   print ()
 
-  if len(hlsurl1) > 190:
-   print(colored(' => Try again <=', 'yellow','on_blue'))
-   sys.exit()
-  else:
-   pass
-
-   if len(hlsurl1) > 50:
+   if 'public' in status:
+      hlsurl0 = dec.split('https://edge')[1]
+      hlsurl1 = hlsurl0.split('m3u8')[0]
       hlsurl2 = hlsurl1.replace('\\u002D', '-')
       hlsurl = ('https://edge{}m3u8'.format(hlsurl2))
-      print ((colored(' => HlsUrl => {} <=', 'yellow', 'on_blue')).format(hlsurl))
+      print ((' => HlsUrl => {} <=').format(hlsurl))
       print ()
 
       try:
@@ -321,7 +320,7 @@ if 'HTTP 404' not in dec:
       except:
          bg = '-'
 
-      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Age: ({}) * Sex: ({}) <=', 'yellow', 'on_blue')).format(rn,loc,age,bg))
+      print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Age: ({}) * Sex: ({}) <=', 'white', 'on_blue')).format(rn,loc,age,bg))
       while True:
          try:
             print()
@@ -329,10 +328,10 @@ if 'HTTP 404' not in dec:
             break
          except ValueError:
             print()
-            print(colored(' => Input must be a number <=', 'yellow', 'on_red'))
+            print(colored(' => Input must be a number <=', 'white', 'on_red'))
       if prog > 6:
          print()
-         print(colored(' => Too big number <=', 'yellow', 'on_red'))
+         print(colored(' => Too big number <=', 'white', 'on_red'))
          sys.exit()
       if prog == 0:
          prg = 'FF-VIEW'
@@ -365,7 +364,7 @@ if 'HTTP 404' not in dec:
 
       if prg == 'FF-VIEW':
          print()
-         print ((colored(' => FF-PLAY => {} <=', 'yellow', 'on_magenta')).format(filename))
+         print ((colored(' => FF-PLAY => {} <=', 'white', 'on_magenta')).format(filename))
          command = ('{} -hide_banner -loglevel panic -i {} -vf scale=640:480 -infbuf -framedrop -autoexit -window_title "{} * {} {}"'.format(ffplay,hlsurl,filename,mn,mod))
          os.system(command)
          while True:
@@ -374,10 +373,10 @@ if 'HTTP 404' not in dec:
                break
             except ValueError:
                print()
-               print(colored(' => Input must be a number <=', 'yellow', 'on_red'))
+               print(colored(' => Input must be a number <=', 'white', 'on_red'))
          if prog > 5:
             print()
-            print(colored(' => Too big number <=', 'yellow', 'on_red'))
+            print(colored(' => Too big number <=', 'white', 'on_red'))
             prg = 'EXIT'
          if prog == 0:
             prg = 'EXIT'
@@ -392,30 +391,30 @@ if 'HTTP 404' not in dec:
 
       if prg == 'FF-FLV':
          print()
-         print ((colored(' => FF-FLV-REC => {} <=', 'yellow', 'on_red')).format(fn1))
+         print ((colored(' => FF-FLV-REC => {} <=', 'white', 'on_red')).format(fn1))
          command = '{} -hide_banner -loglevel panic -i {} -c:v copy -c:a aac -b:a 128k {}'.format(ffmpeg,hlsurl,pf1)
          os.system(command)
-         print(colored(' => END <=', 'yellow','on_blue'))
+         print(colored(' => END <=', 'white','on_blue'))
          sys.exit()
 
       if prg == 'SL':
          print()
-         print ((colored(' => SL-REC >>> {}.mp4 <<<', 'yellow', 'on_red')).format(filename))
+         print ((colored(' => SL-REC >>> {}.mp4 <<<', 'white', 'on_red')).format(filename))
          print()
          command = ('{} hls://{} best -Q --hls-live-edge 1 --hls-playlist-reload-attempts 9 --hls-segment-threads 3 --hls-segment-timeout 5.0 --hls-timeout 20.0 -o {}'.format(streamlink,hlsurl,pf2))
          os.system(command)
          print()
-         print(colored(' => END <=', 'yellow','on_blue'))
+         print(colored(' => END <=', 'white','on_blue'))
          sys.exit()
 
       if prg == 'YTDL':
          print()
-         print ((colored(' => YTDL-REC => {}.ts <=', 'yellow', 'on_red')).format(filename))
+         print ((colored(' => YTDL-REC => {}.ts <=', 'white', 'on_red')).format(filename))
          print()
          command = ('{} -i --geo-bypass --hls-use-mpegts --no-part -q --no-warnings --no-check-certificate {} -o {}'.format(youtube,hlsurl,pf3))
          os.system(command)
          print()
-         print(colored(' => END <=', 'yellow','on_blue'))
+         print(colored(' => END <=', 'white','on_blue'))
          sys.exit()
 
       if prg == 'URL':
@@ -425,33 +424,33 @@ if 'HTTP 404' not in dec:
          file.write(hlsurl)
          file.close()
          print()
-         print(colored(' => END <=', 'yellow','on_blue'))
+         print(colored(' => END <=', 'white','on_blue'))
          sys.exit()
 
       if prg == 'EXIT':
          print()
-         print(colored(' => END <=', 'yellow','on_blue'))
+         print(colored(' => END <=', 'white','on_blue'))
          sys.exit()
 
       else:
          print()
-         print(colored(' => END <=', 'yellow','on_blue'))
+         print(colored(' => END <=', 'white','on_blue'))
          sys.exit()
 
    else:
-      print(colored(' => Model is PVT/HIDDEN or AWAY <=', 'yellow','on_red'))
+      print ((colored(' => Model is {} <=', 'white', 'on_red')).format(status))
       print()
-      print(colored(' => END <=', 'yellow','on_blue'))
+      print(colored(' => END <=', 'white','on_blue'))
       sys.exit()
 
  else:
-   print(colored(' => Model is OFFLINE <=', 'yellow','on_red'))
+   print(colored(' => Model is offline <=', 'white','on_red'))
    print()
-   print(colored(' => END <=', 'yellow','on_blue'))
+   print(colored(' => END <=', 'white','on_blue'))
    sys.exit()
 
 else:
-   print(colored(' => Page Not Found <=', 'yellow','on_red'))
+   print(colored(' => Page Not Found <=', 'white','on_red'))
    print()
-   print(colored(' => END <=', 'yellow','on_blue'))
+   print(colored(' => END <=', 'white','on_blue'))
    sys.exit()
