@@ -1,7 +1,7 @@
-# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.1.1.2 by horacio9a for Python 3.9.1
+# Chaturbate YOUTUBE-DL Remote Anonymous Freechat Recorder v.2.0.0 by horacio9a for Python 3.9.1
 # coding: utf-8
 
-import sys, os, urllib, urllib3, ssl, re, time, datetime, requests, random, command
+import sys, os, urllib, urllib3, ssl, re, time, datetime, command
 urllib3.disable_warnings()
 from urllib3 import PoolManager
 from urllib.parse import quote
@@ -9,8 +9,8 @@ from urllib.parse import unquote
 from colorama import init, Fore, Back, Style
 from termcolor import colored
 import configparser
-config = configparser.ConfigParser()
-config.read('config.ini')
+Config = configparser.ConfigParser()
+Config.read('config3.ini')
 
 init()
 print()
@@ -37,7 +37,7 @@ if 'HTTP 404' not in dec:
   print(colored(' => END <=', 'white','on_blue'))
   sys.exit()
 
- if 'u0022offline' not in dec:
+ if 'u0022offline\\u0022' not in dec:
    status0 = dec.split('status\\u0022: ')[1]
    status1 = status0.split(', \\u0022room')[0]
    status = status1.replace('\\u0022', '')
@@ -79,10 +79,10 @@ if 'HTTP 404' not in dec:
       print ((colored(' => INFO => Real Name: ({}) * Location: ({}) * Age: ({}) * Sex: ({}) <=', 'white', 'on_blue')).format(rn,loc,age,bg))
 
       timestamp = str(time.strftime('%d%m%Y-%H%M%S'))
-      path = config.get('folders', 'output_folder')
+      path = Config.get('folders', 'output_folder')
       filename = model + '_CB_' + timestamp + '.ts'
       pf = (path + filename)
-      youtube = config.get('files', 'youtube')
+      youtube = Config.get('files', 'youtube')
 
       print()
       print((colored(' => YTDL-REC => {} <=', 'white', 'on_red')).format(filename))
