@@ -1,4 +1,4 @@
-urllib3==1.26.4
+urllib3==1.26.5
 DateTime==4.3
 requests==2.25.1
 Command==0.1.0
@@ -7,3 +7,5 @@ termcolor==1.1.0
 configparser==4.0.2
 beautifulsoup4==4.9.3
 gevent==21.1.2
+livestreamer==1.12.2
+streamlink==1.7.0
