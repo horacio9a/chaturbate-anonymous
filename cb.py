@@ -27,9 +27,7 @@ while True:
       print(colored(' => Input must be a number <=', 'white', 'on_red'))
       print
 if mode > 2:
-   print
    print(colored(' => Too big number <=', 'white', 'on_red'))
-   print
    sys.exit()
 if mode == 0:
    mod = 'CBW'
@@ -409,7 +407,6 @@ if 'HTTP 404' not in dec:
             except ValueError:
                print
                print(colored(' => Input must be a number <=', 'white', 'on_red'))
-               print
          if prog > 5:
             print
             print(colored(' => Too big number <=', 'white', 'on_red'))
