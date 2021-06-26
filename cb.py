@@ -1,4 +1,4 @@
-# Chaturbate FFMPEG/STREAMLINK/LIVESTREAM/YTDL Anonymous Freechat Recorder v.2.0.0 by horacio9a for Python 2.7.18
+# Chaturbate FFMPEG/STREAMLINK/LIVESTREAM/YTDL Anonymous Freechat Recorder v.2.0.1 by horacio9a for Python 2.7.18
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, command
@@ -352,7 +352,7 @@ if 'HTTP 404' not in dec:
       while True:
          try:
             print
-            mode = int(raw_input(colored(' => Mode => Exit(6) - URL(5) - YTDL(4) - LS(3) - SL(2) - FFMPEG(1) - PLAYER(0) => ', 'white', 'on_blue')))
+            mode = int(raw_input(colored(' => Mode => Exit(6) - URL(5) - YTDL(4) - LS(3) - SL(2) - FFMPEG(1) - PLAYER(0) => ', 'white', 'on_green')))
             break
          except ValueError:
             print
@@ -437,7 +437,25 @@ if 'HTTP 404' not in dec:
          print
          print (colored(' => SL-REC => {}  (  Size  @   Speed   ) <=', 'white', 'on_red')).format(fn2)
          print
-         command = ('{} hls://{} best -Q --hls-live-edge 1 --hls-playlist-reload-attempts 9 --hls-segment-threads 3 --hls-segment-timeout 5.0 --hls-timeout 20.0 -o {}'.format(streamlink,hlsurl,pf2))
+         streams = int(raw_input(colored(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => ', 'white', 'on_blue')))
+         if streams > 6:
+            stream = 'best'
+         if streams < 1:
+            stream = 'best'
+         if streams == 1:
+            stream = '2160p'
+         if streams == 2:
+            stream = '1440p'
+         if streams == 3:
+            stream = '1080p'
+         if streams == 4:
+            stream = '720p'
+         if streams == 5:
+            stream = '480p'
+         if streams == 6:
+            stream = 'worst'
+         print
+         command = ('{} hls://{} {} -Q --hls-live-edge 1 --hls-playlist-reload-attempts 9 --hls-segment-threads 3 --hls-segment-timeout 5.0 --hls-timeout 20.0 -o {}'.format(streamlink,hlsurl,stream,pf2))
          os.system(command)
          print
          print(colored(' => END <= ', 'white','on_blue'))
@@ -447,7 +465,25 @@ if 'HTTP 404' not in dec:
          print
          print (colored(' => LS-REC => {}  (  Size  @   Speed   ) <=', 'white', 'on_red')).format(fn2)
          print
-         command = ('{} hlsvariant://{} best -Q -o {}'.format(livestreamer,hlsurl,pf2))
+         streams = int(raw_input(colored(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => ', 'white', 'on_blue')))
+         if streams > 6:
+            stream = 'best'
+         if streams < 1:
+            stream = 'best'
+         if streams == 1:
+            stream = '2160p'
+         if streams == 2:
+            stream = '1440p'
+         if streams == 3:
+            stream = '1080p'
+         if streams == 4:
+            stream = '720p'
+         if streams == 5:
+            stream = '480p'
+         if streams == 6:
+            stream = 'worst'
+         print
+         command = ('{} hlsvariant://{} {} -Q -o {}'.format(livestreamer,hlsurl,stream,pf2))
          os.system(command)
          print()
          print(colored(' => END <= ', 'white','on_blue'))
