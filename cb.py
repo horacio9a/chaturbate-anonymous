@@ -435,8 +435,6 @@ if 'HTTP 404' not in dec:
 
       if mod == 'SL':
          print
-         print (colored(' => SL-REC => {}  (  Size  @   Speed   ) <=', 'white', 'on_red')).format(fn2)
-         print
          streams = int(raw_input(colored(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => ', 'white', 'on_blue')))
          if streams > 6:
             stream = 'best'
@@ -454,6 +452,8 @@ if 'HTTP 404' not in dec:
             stream = '480p'
          if streams == 6:
             stream = 'worst'
+         print
+         print (colored(' => SL-REC => {}  (  Size  @   Speed   ) <=', 'white', 'on_red')).format(fn2)
          print
          command = ('{} hls://{} {} -Q --hls-live-edge 1 --hls-playlist-reload-attempts 9 --hls-segment-threads 3 --hls-segment-timeout 5.0 --hls-timeout 20.0 -o {}'.format(streamlink,hlsurl,stream,pf2))
          os.system(command)
@@ -463,8 +463,6 @@ if 'HTTP 404' not in dec:
 
       if mod == 'LS':
          print
-         print (colored(' => LS-REC => {}  (  Size  @   Speed   ) <=', 'white', 'on_red')).format(fn2)
-         print
          streams = int(raw_input(colored(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => ', 'white', 'on_blue')))
          if streams > 6:
             stream = 'best'
@@ -482,6 +480,8 @@ if 'HTTP 404' not in dec:
             stream = '480p'
          if streams == 6:
             stream = 'worst'
+         print
+         print (colored(' => LS-REC => {}  (  Size  @   Speed   ) <=', 'white', 'on_red')).format(fn2)
          print
          command = ('{} hlsvariant://{} {} -Q -o {}'.format(livestreamer,hlsurl,stream,pf2))
          os.system(command)
