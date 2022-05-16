@@ -1,4 +1,5 @@
-# Chaturbate FFMPEG/STREAMLINK/LIVESTREAM/YTDL Anonymous Freechat Recorder v.2.0.1 by horacio9a for Python 3.9.1
+fv
+# Chaturbate FFMPEG/STREAMLINK/LIVESTREAM/YTDL Anonymous Freechat Recorder v.2.0.2 by horacio9a for Python 3.9.1
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, command
@@ -283,7 +284,7 @@ if 'HTTP 404' not in dec:
  
  if 'u0022offline\\u0022' not in dec:
    status0 = dec.split('status\\u0022: ')[1]
-   status1 = status0.split(', \\u0022room')[0]
+   status1 = status0.split(', \\u0022num')[0]
    status = status1.replace('\\u0022', '')
    print ((colored(' => Status => {} <=', 'white', 'on_green')).format(status))
    print ()
