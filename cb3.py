@@ -1,5 +1,4 @@
-fv
-# Chaturbate FFMPEG/STREAMLINK/LIVESTREAM/YTDL Anonymous Freechat Recorder v.2.0.2 by horacio9a for Python 3.9.1
+# Chaturbate FFMPEG/STREAMLINK/LIVESTREAM/YTDL Anonymous Freechat Recorder v.2.0.3 by horacio9a for Python 3.9.1
 # coding: utf-8
 
 import sys, os, urllib, urllib3, ssl, re, time, datetime, command
@@ -20,7 +19,7 @@ print()
 
 while True:
    try:
-      mode = int(input(colored(' => Select => CB_Online_All(2) CB_Online_Wanted(1) CB_Wanted(0) => ', 'white', 'on_blue')))
+      mode = int(input(' => Select => CB_Online_All(2) CB_Online_Wanted(1) CB_Wanted(0) => '))
       print()
       break
    except ValueError:
@@ -42,7 +41,7 @@ if mod == 'CBW':
         for (num,value) in enumerate(modellist):
            print(' =>',(num+1),value[:-1])
         print()
-        mn = int(input(colored(' => Select CB Wanted Model => ', 'white', 'on_blue')))
+        mn = int(input(' => Select CB Wanted Model => '))
         print()
         nr_lines = sum(1 for line in open(Config.get('files', 'wanted_model_list')))
         if mn > nr_lines:
@@ -64,7 +63,7 @@ if mod == 'CBOW':
         for (num,value) in enumerate(modellist):
            print(' =>',(num+1),value[:-1])
         print()
-        mn = int(input(colored(' => Select CB Online Wanted Model => ', 'white', 'on_blue')))
+        mn = int(input(' => Select CB Online Wanted Model => '))
         print()
         nr_lines = sum(1 for line in open(Config.get('files', 'online_wanted_model_list')))
         if mn > nr_lines:
@@ -82,7 +81,7 @@ if mod == 'CBOW':
 if mod == 'CBOA':
   while True:
      try:
-        cboa = int(input(colored(' => Select => <500(0) <1000(1) <1500(2) <2000(3) <2500(4) <3000(5) <3500(6) => ', 'white', 'on_blue')))
+        cboa = int(input(' => Select => <500(0) <1000(1) <1500(2) <2000(3) <2500(4) <3000(5) <3500(6) => '))
         print()
         break
      except ValueError:
@@ -113,7 +112,7 @@ if mod == 'CBOA':
               break
             print(' =>',(num+1),value[:-1])
           print()
-          mn = int(input(colored(' => Select CB Online All Models => ', 'white', 'on_blue')))
+          mn = int(input(' => Select CB Online All Models => '))
           print()
           nr_lines = sum(1 for line in open(Config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
@@ -137,7 +136,7 @@ if mod == 'CBOA':
               break
             print(' =>',(num+1),value[:-1])
           print()
-          mn = int(input(colored(' => Select CB Online All Models => ', 'white', 'on_blue')))
+          mn = int(input(' => Select CB Online All Models => '))
           print()
           nr_lines = sum(1 for line in open(Config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
@@ -161,7 +160,7 @@ if mod == 'CBOA':
               break
             print(' =>',(num+1),value[:-1])
           print()
-          mn = int(input(colored(' => Select CB Online All Models => ', 'white', 'on_blue')))
+          mn = int(input(' => Select CB Online All Models => '))
           print()
           nr_lines = sum(1 for line in open(Config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
@@ -185,7 +184,7 @@ if mod == 'CBOA':
               break
             print(' =>',(num+1),value[:-1])
           print()
-          mn = int(input(colored(' => Select CB Online All Models => ', 'white', 'on_blue')))
+          mn = int(input(' => Select CB Online All Models => '))
           print()
           nr_lines = sum(1 for line in open(Config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
@@ -209,7 +208,7 @@ if mod == 'CBOA':
               break
             print(' =>',(num+1),value[:-1])
           print()
-          mn = int(input(colored(' => Select CB Online All Models => ', 'white', 'on_blue')))
+          mn = int(input(' => Select CB Online All Models => '))
           print()
           nr_lines = sum(1 for line in open(Config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
@@ -233,7 +232,7 @@ if mod == 'CBOA':
               break
             print(' =>',(num+1),value[:-1])
           print()
-          mn = int(input(colored(' => Select CB Online All Models => ', 'white', 'on_blue')))
+          mn = int(input(' => Select CB Online All Models => '))
           print()
           nr_lines = sum(1 for line in open(Config.get('files', 'online_all_model_list')))
           if mn > nr_lines:
@@ -257,7 +256,7 @@ if mod == 'CBOA':
               break
             print(' =>',(num+1),value[:-1])
           print()
-          mn = int(input(colored(' => Select CB Online All Models => ', 'white', 'on_blue')))
+          mn = int(input(' => Select CB Online All Models => '))
           print()
           break
        except ValueError:
@@ -325,7 +324,7 @@ if 'HTTP 404' not in dec:
       while True:
          try:
             print()
-            mode = int(input(colored(' => Mode => Exit(6) - URL(5) - YTDL(4) - LS(3) - SL(2) - FFMPEG(1) - PLAYER(0) => ', 'white', 'on_green')))
+            mode = int(input(' => Mode => Exit(6) - URL(5) - YTDL(4) - LS(3) - SL(2) - FFMPEG(1) - PLAYER(0) => '))
             break
          except ValueError:
             print()
@@ -375,7 +374,7 @@ if 'HTTP 404' not in dec:
          while True:
             try:
                print()
-               prog = int(input(colored(' => Mode => URL(5) - YTDL(4) - LS(3) - SL(2) - FFMPEG(1) - Exit(0) => ', 'white', 'on_green')))
+               prog = int(input(' => Mode => URL(5) - YTDL(4) - LS(3) - SL(2) - FFMPEG(1) - Exit(0) => '))
                break
             except ValueError:
                print()
@@ -407,7 +406,7 @@ if 'HTTP 404' not in dec:
 
       if mod == 'SL':
          print()
-         streams = int(input(colored(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => ', 'white', 'on_blue')))
+         streams = int(input(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => '))
          if streams > 6:
             stream = 'best'
          if streams < 1:
