@@ -151,7 +151,7 @@ TIMEOUT 30
 GOTO CBSLR3_
 :CBLSR3
 SET n=0
-FOR /F "tokens=*" %%A IN (C:/-c4-py/C4_Wanted.txt) DO (
+FOR /F "tokens=*" %%A IN (C:/-cba-py/CB_Wanted.txt) DO (
 SET /A n=n+1
 SET _fav!n!=%%A
 ECHO !n! %%A
@@ -162,7 +162,7 @@ FOR /L %%f IN (1,1,!n!) DO (
 IF /I '%MODEL%'=='%%f' SET M=%%f
 )
 SET n=0
-FOR /F "tokens=*" %%A IN (C:/-c4-py/C4_Wanted.txt) DO (
+FOR /F "tokens=*" %%A IN (C:/-cba-py/CB_Wanted.txt) DO (
 SET /A n=n+1
 IF !n!==%M% SET MODEL=%%A
 )
