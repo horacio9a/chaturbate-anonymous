@@ -434,7 +434,7 @@ if 'HTTP 404' not in dec:
 
       if mod == 'LS':
          print()
-         streams = int(input(colored(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => ', 'white', 'on_blue')))
+         streams = int(input(' => Stream => worst(6) - 480p(5) - 720p(4) - 1080p(3) - 1440p(2) - 2160p(1) - best(0) => '))
          if streams > 6:
             stream = 'best'
          if streams < 1:
